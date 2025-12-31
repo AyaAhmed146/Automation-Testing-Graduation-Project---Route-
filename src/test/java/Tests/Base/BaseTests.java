@@ -47,3 +47,4 @@ public class BaseTests {
         }
     }
 }
+// Compare this snippet from src/test/java/Tests/HomeTests.java:
