@@ -25,12 +25,6 @@ public class BaseTests {
 
         driver = new ChromeDriver(options);
 
-        // Longer timeouts for slow websites
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
-
-        wait = new WebDriverWait(driver, Duration.ofSeconds(40));
-
         driver.navigate().to("https://eyouthlearning.com/");
 
         try {
