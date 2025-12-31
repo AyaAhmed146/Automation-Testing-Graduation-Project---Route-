@@ -47,4 +47,5 @@ public class BaseTests {
         }
     }
 }
-// Compare this snippet from src/test/java/Tests/HomeTests.java:
+// Compare this snipp
+// et from src/test/java/Tests/HomeTests.java:
