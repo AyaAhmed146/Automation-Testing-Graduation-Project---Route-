@@ -25,6 +25,9 @@ public class BaseTests {
 
         driver = new ChromeDriver(options);
 
+        // Initialize WebDriverWait with 10 second timeout
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         driver.navigate().to("https://eyouthlearning.com/");
 
         try {
