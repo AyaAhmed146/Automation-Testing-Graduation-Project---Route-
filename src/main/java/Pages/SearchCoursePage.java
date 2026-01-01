@@ -6,11 +6,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.List;
 
-public class HomePage {
+public class SearchCoursePage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    public HomePage(WebDriver driver) {
+    public SearchCoursePage(WebDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(40));
     }

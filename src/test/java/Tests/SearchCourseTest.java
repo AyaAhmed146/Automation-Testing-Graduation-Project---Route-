@@ -1,15 +1,15 @@
 package Tests;
 
-import Pages.HomePage;
+import Pages.SearchCoursePage;
 import Tests.Base.BaseTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class HomeTests extends BaseTests {
+public class SearchCourseTest extends BaseTests {
 
     @Test
     public void testSearch() {
-        HomePage home = new HomePage(driver);
+        SearchCoursePage home = new SearchCoursePage(driver);
 
         // Step 1: Search
         home.search("كيف تنضم إلى البنك");
