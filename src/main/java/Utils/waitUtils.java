@@ -49,6 +49,20 @@ public class waitUtils {
         return wait.until(ExpectedConditions.alertIsPresent());
     }
 
+    /* ================= Page Load ================= */
+
+    public void waitForPageLoad() {
+        wait.until(driver -> {
+            try {
+                Object readyState = ((JavascriptExecutor) driver)
+                        .executeScript("return document.readyState");
+                return readyState != null && readyState.equals("complete");
+            } catch (Exception e) {
+                return false;
+            }
+        });
+    }
+
     /* ================= JavaScript Helpers ================= */
 
     public void scrollToElement(WebElement element) {
@@ -64,4 +78,3 @@ public class waitUtils {
         }
     }
 }
-
