@@ -20,8 +20,7 @@ public class LinkedInLinkTest extends BaseTests {
         waitUtils.waitForUrlContains("linkedin.com");
 
         Assert.assertTrue(
-                driver.getCurrentUrl().contains("linkedin.com"),
-                "URL should contain linkedin.com"
+                driver.getCurrentUrl().contains("linkedin.com")
         );
     }
 

@@ -7,8 +7,8 @@ import java.time.Duration;
 import java.util.List;
 
 public class SearchCoursePage {
-    private WebDriver driver;
-    private WebDriverWait wait;
+    private final WebDriver driver;
+    private final WebDriverWait wait;
 
     public SearchCoursePage(WebDriver driver) {
         this.driver = driver;

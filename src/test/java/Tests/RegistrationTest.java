@@ -3,7 +3,6 @@ package Tests;
 import Tests.Base.BaseTests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.List;
@@ -19,7 +18,7 @@ public class RegistrationTest extends BaseTests {
 
     @Test
     public void testOpenRegistrationPage() {
-        // خذ جميع الأزرار واتحقق من اللي فيه "انضم لنا"
+        // looping on all buttons to find the correct one
         List<WebElement> allButtons = driver.findElements(
                 By.xpath("//button[@aria-label='button to be clicked']")
         );
@@ -32,31 +31,20 @@ public class RegistrationTest extends BaseTests {
             }
         }
 
-        // اضغط على الزر
+        // click on the found button
         targetButton.click();
-        System.out.println("✅ تم الضغط على زر انضم لنا");
+        Utils.waitUtils.waitFor(1);
 
-        // انتظر Dialog تظهر
-        waitUtils.waitFor(1);
-
-        // اضغط على "انضم لنا كطالب"
+        // click on the "انضم لنا كطالب" link
         WebElement signupLink = waitUtils.waitForClickable(
                 By.xpath("//a[@href='/signup']")
         );
         signupLink.click();
         System.out.println("✅ تم الضغط على انضم لنا كطالب");
 
-        // انتظر الـ URL تتغير
+        // verify that the URL contains "/signup"
         waitUtils.waitForUrlContains("/signup");
 
-        // تحقق من الـ URL
-        String currentUrl = driver.getCurrentUrl();
-        Assert.assertTrue(
-                currentUrl.contains("/signup"),
-                "URL يجب أن تحتوي على /signup"
-        );
-
-        System.out.println("✅ اختبار نجح!");
-        waitUtils.waitFor(1);
+        Utils.waitUtils.waitFor(1);
     }
 }

@@ -24,6 +24,6 @@ public class SearchCourseTest extends BaseTests {
                 "Word should appear on page"
         );
 
-        waitUtils.waitFor(1);
+        Utils.waitUtils.waitFor(1);
     }
     }

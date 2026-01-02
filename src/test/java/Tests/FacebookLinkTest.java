@@ -20,8 +20,7 @@ public class FacebookLinkTest extends BaseTests {
         waitUtils.waitForUrlContains("facebook.com");
 
         Assert.assertTrue(
-                driver.getCurrentUrl().contains("facebook.com"),
-                "URL should contain facebook.com"
+                driver.getCurrentUrl().contains("facebook.com")
         );
     }
 

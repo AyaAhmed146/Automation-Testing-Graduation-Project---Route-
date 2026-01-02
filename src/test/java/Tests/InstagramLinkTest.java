@@ -20,8 +20,7 @@ public class InstagramLinkTest extends BaseTests {
         waitUtils.waitForUrlContains("instagram.com");
 
         Assert.assertTrue(
-                driver.getCurrentUrl().contains("instagram.com"),
-                "URL should contain instagram.com"
+                driver.getCurrentUrl().contains("instagram.com")
         );
     }
 
