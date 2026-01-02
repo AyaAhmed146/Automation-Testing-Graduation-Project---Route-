@@ -23,11 +23,5 @@ public class ConfigReader {
         return Integer.parseInt(timeout);
     }
 
-    public static String getBaseUrl() {
-        return properties.getProperty("baseurl", "https://eyouthlearning.com/");
-    }
 
-    public static String getBrowser() {
-        return properties.getProperty("browser", "chrome");
-    }
 }

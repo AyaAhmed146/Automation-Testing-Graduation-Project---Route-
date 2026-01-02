@@ -26,13 +26,13 @@ public class EndToEndCourseSubscriptionTest extends BaseTests {
         waitUtils.waitForVisibility(By.id("password")).sendKeys(PASSWORD);
         waitUtils.waitForClickable(By.xpath("//button[@type='submit']")).click();
         waitUtils.waitForUrlContains("eyouthlearning.com");
-        waitUtils.waitFor(2);
+        Utils.waitUtils.waitFor(2);
     }
 
     private void navigateToCourses() {
         waitUtils.waitForClickable(By.xpath("//a[@href='/all-courses']")).click();
         waitUtils.waitForUrlContains("/all-courses");
-        waitUtils.waitFor(2);
+        Utils.waitUtils.waitFor(2);
     }
 
     private String getFirstCourseName() {
@@ -47,12 +47,12 @@ public class EndToEndCourseSubscriptionTest extends BaseTests {
         WebElement courseCard = waitUtils.waitForVisibility(By.className("course-card"));
         WebElement subscribeBtn = courseCard.findElement(By.xpath(".//button[contains(text(), 'اشترك')]"));
         subscribeBtn.click();
-        waitUtils.waitFor(2);
+        Utils.waitUtils.waitFor(2);
     }
 
     private void verifyPaymentPage(String courseName) {
         waitUtils.waitForUrlContains("/payment");
-        waitUtils.waitFor(2);
+        Utils.waitUtils.waitFor(2);
 
         String paymentPageSource = driver.getPageSource();
         System.out.println("Current URL: " + driver.getCurrentUrl());

@@ -18,10 +18,10 @@ public class EmptyLoginTest extends BaseTests {
     @Test
     public void testLoginInvalid() {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,300)");
-        waitUtils.waitFor(1);
+        Utils.waitUtils.waitFor(1);
 
         waitUtils.waitForClickable(By.xpath("//button[@type='submit']")).click();
-        waitUtils.waitFor(2);
+        Utils.waitUtils.waitFor(2);
 
         String pageSource = driver.getPageSource();
         assert pageSource.contains("اسم المستخدم مطلوب") :

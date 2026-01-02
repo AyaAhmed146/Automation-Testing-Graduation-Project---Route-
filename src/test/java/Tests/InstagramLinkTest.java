@@ -16,7 +16,7 @@ public class InstagramLinkTest extends BaseTests {
                 By.xpath("//a[@href='https://instagram.com/eyouthlearning?igshid=YmMyMTA2M2Y=']")
         ).click();
 
-        waitUtils.waitFor(1);
+        Utils.waitUtils.waitFor(1);
         waitUtils.waitForUrlContains("instagram.com");
 
         Assert.assertTrue(
@@ -27,7 +27,7 @@ public class InstagramLinkTest extends BaseTests {
     private void scrollToFooter() {
         for (int i = 0; i < 10; i++) {
             ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, window.innerHeight)");
-            waitUtils.waitFor(1);
+            Utils.waitUtils.waitFor(1);
         }
     }
 }

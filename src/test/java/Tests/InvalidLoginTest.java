@@ -13,7 +13,7 @@ public class InvalidLoginTest extends BaseTests {
     public void setUp() {
         super.setUp();
         driver.get("https://eyouthlearning.com/signin");
-        waitUtils.waitFor(1);
+        Utils.waitUtils.waitFor(1);
     }
 
     @Test
@@ -22,10 +22,10 @@ public class InvalidLoginTest extends BaseTests {
         waitUtils.waitForVisibility(By.id("password")).sendKeys("x");
 
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,300)");
-        waitUtils.waitFor(1);
+        Utils.waitUtils.waitFor(1);
 
         waitUtils.waitForClickable(By.xpath("//button[@type='submit']")).click();
-        waitUtils.waitFor(2);
+        Utils.waitUtils.waitFor(2);
 
         String pageSource = driver.getPageSource();
         assert pageSource.contains("اسم المستخدم أو كلمة المرور غير صحيحة") :

@@ -3,6 +3,7 @@ package Tests;
 import Tests.Base.BaseTests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import java.util.List;
@@ -13,7 +14,7 @@ public class RegistrationTest extends BaseTests {
     @Override
     public void setUp() {
         super.setUp();
-        waitUtils.waitFor(2);
+        Utils.waitUtils.waitFor(2);
     }
 
     @Test
@@ -32,6 +33,7 @@ public class RegistrationTest extends BaseTests {
         }
 
         // click on the found button
+        Assert.assertNotNull(targetButton);
         targetButton.click();
         Utils.waitUtils.waitFor(1);
 
@@ -40,7 +42,6 @@ public class RegistrationTest extends BaseTests {
                 By.xpath("//a[@href='/signup']")
         );
         signupLink.click();
-        System.out.println("✅ تم الضغط على انضم لنا كطالب");
 
         // verify that the URL contains "/signup"
         waitUtils.waitForUrlContains("/signup");

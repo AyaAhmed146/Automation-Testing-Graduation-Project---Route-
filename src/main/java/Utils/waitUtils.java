@@ -29,25 +29,12 @@ public class waitUtils {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    public void waitForElementToDisappear(By locator) {
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(locator));
-    }
-
     /* ================= Page & URL ================= */
 
     public void waitForUrlContains(String text) {
         wait.until(ExpectedConditions.urlContains(text));
     }
 
-    public void waitForTitleContains(String title) {
-        wait.until(ExpectedConditions.titleContains(title));
-    }
-
-    /* ================= Alerts ================= */
-
-    public Alert waitForAlert() {
-        return wait.until(ExpectedConditions.alertIsPresent());
-    }
 
     /* ================= Page Load ================= */
 
@@ -65,10 +52,6 @@ public class waitUtils {
 
     /* ================= JavaScript Helpers ================= */
 
-    public void scrollToElement(WebElement element) {
-        ((JavascriptExecutor) driver)
-                .executeScript("arguments[0].scrollIntoView(true);", element);
-    }
 
     public static void waitFor(int seconds) {
         try {
