@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-current.dtd">
+<suite name="EYouth Learning Test Suite" verbose="2">
+
+    <test name="Invalid Registration Tests">
+        <classes>
+            <class name="Tests.InvalidRegistrationTest"/>
+        </classes>
+    </test>
+
+    <test name="Search Course Tests">
+        <classes>
+            <class name="Tests.SearchCourseTest"/>
+        </classes>
+    </test>
+
+    <test name="Registration Tests">
+        <classes>
+            <class name="Tests.RegistrationTest"/>
+        </classes>
+    </test>
+
+    <test name="Login Tests">
+        <classes>
+            <class name="Tests.InvalidLoginTest"/>
+            <class name="Tests.EmptyLoginTest"/>
+        </classes>
+    </test>
+
+    <test name="Social Media Link Tests">
+        <classes>
+            <class name="Tests.LinkedInLinkTest"/>
+            <class name="Tests.InstagramLinkTest"/>
+            <class name="Tests.FacebookLinkTest"/>
+        </classes>
+    </test>
+
+    <test name="End-to-End Tests">
+        <classes>
+            <class name="Tests.EndToEndCourseSubscriptionTest"/>
+        </classes>
+    </test>
+
+</suite>

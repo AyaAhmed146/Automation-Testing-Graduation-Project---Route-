@@ -3,7 +3,7 @@ package Tests;
 import Tests.Base.BaseTests;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class EndToEndCourseSubscriptionTest extends BaseTests {
@@ -12,43 +12,55 @@ public class EndToEndCourseSubscriptionTest extends BaseTests {
     private static final String PASSWORD = "12345678";
 
     @Test
-    public void testEndToEndCourseSubscription() throws Exception {
-        // Login
+    public void testEndToEndCourseSubscription() {
+        login();
+        navigateToCourses();
+        String courseName = getFirstCourseName();
+        subscribeToCourse();
+        verifyPaymentPage(courseName);
+    }
+
+    private void login() {
         driver.navigate().to("https://eyouthlearning.com/signin");
-        wait.until(ExpectedConditions.presenceOfElementLocated(By.id("username")));
-        driver.findElement(By.id("username")).sendKeys(USERNAME);
-        driver.findElement(By.id("password")).sendKeys(PASSWORD);
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        wait.until(ExpectedConditions.urlContains("eyouthlearning.com"));
-        Thread.sleep(2000);
+        waitUtils.waitForVisibility(By.id("username")).sendKeys(USERNAME);
+        waitUtils.waitForVisibility(By.id("password")).sendKeys(PASSWORD);
+        waitUtils.waitForClickable(By.xpath("//button[@type='submit']")).click();
+        waitUtils.waitForUrlContains("eyouthlearning.com");
+        waitUtils.waitFor(2);
+    }
 
-        // Navigate to All Courses
-        driver.findElement(By.xpath("//a[@href='/all-courses']")).click();
-        wait.until(ExpectedConditions.urlContains("/all-courses"));
-        Thread.sleep(2000);
+    private void navigateToCourses() {
+        waitUtils.waitForClickable(By.xpath("//a[@href='/all-courses']")).click();
+        waitUtils.waitForUrlContains("/all-courses");
+        waitUtils.waitFor(2);
+    }
 
-        // Get first course name
-        WebElement courseCard = wait.until(ExpectedConditions.presenceOfElementLocated(By.className("course-card")));
+    private String getFirstCourseName() {
+        WebElement courseCard = waitUtils.waitForVisibility(By.className("course-card"));
         WebElement courseNameElement = courseCard.findElement(By.xpath(".//strong"));
         String courseName = courseNameElement.getText().trim();
         System.out.println("Found course: " + courseName);
+        return courseName;
+    }
 
-        // Subscribe
+    private void subscribeToCourse() {
+        WebElement courseCard = waitUtils.waitForVisibility(By.className("course-card"));
         WebElement subscribeBtn = courseCard.findElement(By.xpath(".//button[contains(text(), 'اشترك')]"));
         subscribeBtn.click();
-        Thread.sleep(3000);
+        waitUtils.waitFor(2);
+    }
 
-        // Wait for payment page to load
-        wait.until(ExpectedConditions.urlContains("/payment"));
-        Thread.sleep(2000);
+    private void verifyPaymentPage(String courseName) {
+        waitUtils.waitForUrlContains("/payment");
+        waitUtils.waitFor(2);
 
-        // Check if course appears in payment page
         String paymentPageSource = driver.getPageSource();
         System.out.println("Current URL: " + driver.getCurrentUrl());
         System.out.println("Looking for course: " + courseName);
-        System.out.println("Course found in payment page: " + paymentPageSource.contains(courseName));
 
-        assert paymentPageSource.contains(courseName) :
-                String.format("Course '%s' should appear in payment page", courseName);
+        Assert.assertTrue(paymentPageSource.contains(courseName),
+                String.format("Course '%s' should appear in payment page", courseName));
     }
 }
+
+

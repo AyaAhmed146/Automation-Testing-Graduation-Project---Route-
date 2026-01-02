@@ -2,6 +2,7 @@ package Tests;
 
 import Tests.Base.BaseTests;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -12,16 +13,22 @@ public class InvalidLoginTest extends BaseTests {
     public void setUp() {
         super.setUp();
         driver.get("https://eyouthlearning.com/signin");
+        waitUtils.waitFor(1);
     }
 
     @Test
-    public void testLoginInvalid() throws Exception {
-        driver.findElement(By.id("username")).sendKeys("x");
-        driver.findElement(By.id("password")).sendKeys("x");
-        ((org.openqa.selenium.JavascriptExecutor)driver).executeScript("window.scrollBy(0,300)");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        Thread.sleep(2000);
-        assert driver.getPageSource().contains("اسم المستخدم أو كلمة المرور غير صحيحة");
+    public void testLoginInvalid() {
+        waitUtils.waitForVisibility(By.id("username")).sendKeys("x");
+        waitUtils.waitForVisibility(By.id("password")).sendKeys("x");
+
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,300)");
+        waitUtils.waitFor(1);
+
+        waitUtils.waitForClickable(By.xpath("//button[@type='submit']")).click();
+        waitUtils.waitFor(2);
+
+        String pageSource = driver.getPageSource();
+        assert pageSource.contains("اسم المستخدم أو كلمة المرور غير صحيحة") :
+                "Error message should appear";
     }
 }

@@ -2,6 +2,7 @@ package Tests;
 
 import Tests.Base.BaseTests;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -15,11 +16,17 @@ public class EmptyLoginTest extends BaseTests {
     }
 
     @Test
-    public void testLoginInvalid() throws Exception {
-        ((org.openqa.selenium.JavascriptExecutor)driver).executeScript("window.scrollBy(0,300)");
-        Thread.sleep(1000);
-        driver.findElement(By.xpath("//button[@type='submit']")).click();
-        Thread.sleep(2000);
-        assert driver.getPageSource().contains("اسم المستخدم مطلوب");
+    public void testLoginInvalid() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,300)");
+        waitUtils.waitFor(1);
+
+        waitUtils.waitForClickable(By.xpath("//button[@type='submit']")).click();
+        waitUtils.waitFor(2);
+
+        String pageSource = driver.getPageSource();
+        assert pageSource.contains("اسم المستخدم مطلوب") :
+                "Error message should appear";
     }
 }
+
+

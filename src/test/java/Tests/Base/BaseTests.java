@@ -4,14 +4,13 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import Utils.waitUtils;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.AfterClass;
-import java.time.Duration;
 
 public class BaseTests {
     protected WebDriver driver;
-    protected WebDriverWait wait;
+    protected waitUtils waitUtils;
 
     @BeforeClass
     public void setUp() {
@@ -24,17 +23,10 @@ public class BaseTests {
         options.addArguments("--start-maximized");
 
         driver = new ChromeDriver(options);
-
-        // Initialize WebDriverWait with 10 second timeout
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        waitUtils = new waitUtils(driver);
 
         driver.navigate().to("https://eyouthlearning.com/");
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
-        }
+        waitUtils.waitFor(2);
     }
 
     @AfterClass
@@ -44,3 +36,4 @@ public class BaseTests {
         }
     }
 }
+

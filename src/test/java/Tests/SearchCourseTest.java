@@ -24,10 +24,6 @@ public class SearchCourseTest extends BaseTests {
                 "Word should appear on page"
         );
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        waitUtils.waitFor(1);
     }
-}
+    }
